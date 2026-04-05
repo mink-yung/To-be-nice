@@ -1,0 +1,9 @@
+html
+주석 <!-- --> ctrl+/
+속성 <p class="">내용</p>
+<a herf="링크넣기" target="_blank">링크 새창에서 열기</a>
+<a href="#">그냥 링크처럼 보이게 하기 이지만 아무일도 안일어남</a>
+<header>머릿말.서비스 이름, 서비스를 대표하는 무언가</header>
+<nav></nav>
+<section>내용</section>
+<footer>저작권 정보,연락처 등등</footer>
