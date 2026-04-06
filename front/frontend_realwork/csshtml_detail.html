@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css를 적용하는 세가지 방법</title>
+    <link rel="stylesheet" href="step4.css">
+    <style>
+        p {
+            font-size: 60px;
+            color: green;
+        }
+        .title {
+            font-size: 30px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <h2>인라인 스타일</h2>
+    <div style="font-size: 40px">Text</div>
+    <div style="font-size: 60px">Text</div>
+    <div style="color:blue">Text</div>
+    <div style="font-size: 60px; color: blue;">Text</div>
+
+    <h2>내부 스타일 </h2>
+    <p>단락입니다.</p>
+    <div class="title">Text</div>
+
+    <h3>외부 스타일</h3>
+    <div class="outer">Text</div>
+    <span>Span Text</span>
+</body>
+</html>
