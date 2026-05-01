@@ -3,29 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>css 실습</title>
-    <link rel="stylesheets" href="./style.css" />
+    <title>flexbox</title>
+    <link rel="stylesheet" href="step6.css" />
 </head>
 <body>
-    <h2>텍스트 스타일</h2>
-    <div class="text-style">다양한 스타일의 텍스트</div>
-
-    <h2>박스의 크기와 배경색</h2>
-    <div class="box-style"></div>
-    <div class="hex-style"></div>
-
-    <h2>박스의 테두리</h2>
-    <div class="box-border"></div>
-    <br/>
-    <div class="box-border dashed"></div>
-    <br/>
-    <div class="box-border dotted"></div>
-    <br/>
-    <div class="box-border double"></div>
-
-    <h2>박스의 여백(패딩,마진)</h2>
-    <div class="box-padding">패딩이 있는 박스</div>
-
-
+    <h2>주축변경</h2>
+    <div class="flex-container">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+        <div class="flex-container column">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+    <h2>주축 정렬</h2>
+    <div class="flex-container justify-start">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+    <div class="flex-container justify-center">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+    <div class="flex-container justify-end">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+    <div class="flex-container justify-around">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+    <div class="flex-container justify-between">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+    </div>
+    <h2>교차축 정렬</h2>
+    <div class="flex-container align-start" style="height: 200px">
+        <div class="flex-item" style="height: 50px">Item 1</div>
+        <div class="flex-item" style="height: 150px">Item 2</div>
+        <div class="flex-item" style="height: 100px">Item 3</div>
+    </div>
+    <div class="flex-container align-center justify-center" style="height: 200px">
+        <div class="flex-item" style="height: 50px">Item 1</div>
+        <div class="flex-item" style="height: 150px">Item 2</div>
+        <div class="flex-item" style="height: 100px">Item 3</div>
+    </div>
+    <div class="flex-container align-end" style="height: 200px">
+        <div class="flex-item" style="height: 50px">Item 1</div>
+        <div class="flex-item" style="height: 150px">Item 2</div>
+        <div class="flex-item" style="height: 100px">Item 3</div>
+    </div>
+    <h2>플랙스 박스 내에서 비율</h2>
+    <div class="flex-container">
+        <div class="flex-item flex-1">Item 1</div>
+        <div class="flex-item flex-2">Item 2</div>
+        <div class="flex-item flex-3">Item 3</div>
+    </div>
+    <h2>줄바꿈</h2>
+    <div class="flex-container wrap">
+        <div class="flex-item">Item 1</div>
+        <div class="flex-item">Item 2</div>
+        <div class="flex-item">Item 3</div>
+        <div class="flex-item">Item 4</div>
+        <div class="flex-item">Item 5</div>
+        <div class="flex-item">Item 6</div>
+        <div class="flex-item">Item 7</div>
+        <div class="flex-item">Item 8</div>
+    </div>
 </body>
-</html>
+</html> 

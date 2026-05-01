@@ -5,8 +5,8 @@
     text-decoration: line-through;
 }
 .box-style{
-    width: 200px;
-    height: 200px;
+    width: 50px;
+    height: 50px;
     background-color: darkcyan;
 }
 .hex-style{
@@ -37,5 +37,36 @@
 }
 .box-padding{
     border: 1px solid black;
-    pa
+    /* padding: 20px; */
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-bottom: 50px;
+    padding-right: 20px;
+}
+.box-margin{
+    border: 1px solid green;
+    margin: 50px;
+}
+.content-box{
+    width:50px;
+    height: 50px;
+    background-color: blueviolet;
+    padding: 20px;
+    margin: 30px;
+    box-sizing: content-box;
+}
+.border-box{
+    width:50px;
+    height: 50px;
+    background-color: blueviolet;
+    padding: 20px;
+    margin: 30px;
+    box-sizing: border-box;
+}
+.box-block{
+    display: block;
+}
+
+.box-inline{
+    display: inline;
 }
