@@ -1,0 +1,8 @@
+.outer{
+    color: red;
+    font-size: 50px;
+}
+span{
+    color: green;
+    font-size: 30px;
+}
