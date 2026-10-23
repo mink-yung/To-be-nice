@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>밍키의 비밀노트</title>
+    <link rel="stylesheet" href="skin.css">
+</head>
+<body class="home-page">
+    <header class="bookshelf-header">
+        <h1>밍키의 비밀노트</h1>
+    </header>
+
+    <main>
+        <section class="bookshelf">
+            <h2>Mingky's Bookshelf</h2>
+
+            <nav class="book-categories">
+                <a href="#daily" class="book">일상</a>
+                <a href="#study" class="book">공부</a>
+                <a href="#assignment" class="book">과제</a>
+                <a href="#laboratory" class="book">실험실</a>
+                <a href="#mistakes" class="book">삐약일지</a>
+                <a href="#project" class="book">프로젝트</a>
+            </nav>
+        </section>
+
+        <section class="notebook-layout">
+            <aside class="sidebar">
+                <img
+                    src="https://placehold.co/120x120"
+                    alt="프로필사진"
+                    class="profile-image"
+                >
+
+                <h2>밍키</h2>
+                <p id="clock">현재 시각</p>
+                <p id="today">오늘 날짜</p>
+
+                <nav class="sidebar-categories">
+                <a href="#daily">일상</a>
+                <a href="#study">공부</a>
+                <a href="#assignment">과제</a>
+                <a href="#labatory">실험실</a>
+                <a href="#mistakes">삐약일지</a>
+                <a href="#project">프로젝트</a>
+                </nav>
+            </aside>
+
+            <article class="notebook">
+                <div class="notebook-spring">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="notebook-content">
+                    <p class="post-info">일상 . 2026.10.23</p>
+
+                    <h2>오늘의 기록</h2>
+
+                    <hr>
+
+                    <p>밍키의 비밀노트를 보시다니 변태같으니</p>
+                    <p>여기다가 비밀정보를 하나씩 적을것이다.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+    <script>
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("page") === "post") {
+        document.body.classList.remove("home-page");
+        document.body.classList.add("post-page");
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+
+/* ========================================
+   1. 기본 설정
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #f4e5c0;
+    font-family: "Noto Serif KR", serif;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgba(117, 77, 35, 0.3),
+            transparent 65%
+        ),
+        linear-gradient(
+            180deg,
+            #100e13,
+            #211810 65%,
+            #100d0b
+        );
+}
+
+
+/* ========================================
+   2. 블로그 제목
+======================================== */
+
+.bookshelf-header {
+    padding: 55px 20px 35px;
+    text-align: center;
+}
+
+.bookshelf-header h1 {
+    margin: 0;
+    color: #e8cb83;
+    font-size: clamp(30px, 5vw, 52px);
+    letter-spacing: 5px;
+
+    text-shadow:
+        0 0 12px rgba(225, 176, 75, 0.3),
+        0 3px 5px #000;
+}
+
+.bookshelf-header p {
+    margin-top: 14px;
+    color: #c0a77b;
+    font-size: 14px;
+    letter-spacing: 6px;
+}
+
+
+/* ========================================
+   3. 책장 영역
+======================================== */
+
+.bookshelf {
+    min-height: 700px;
+    padding: 40px 30px 35px;
+
+    background-image: url("images/bookshelf-bg.png");
+    background-size: 85% 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+
+/* 책장 제목 */
+
+.bookshelf > h2 {
+    position: relative;
+    margin: 0 0 28px;
+    padding: 8px 0 18px;
+
+    color: #d9b875;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 7px;
+
+    text-shadow:
+        0 0 8px rgba(224, 184, 104, 0.35),
+        0 2px 4px #000;
+}
+
+.bookshelf > h2::before,
+.bookshelf > h2::after {
+    content: "✦";
+    display: inline-block;
+    margin: 0 18px;
+
+    color: #d4b16b;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   4. 책 여섯 권의 배치
+======================================== */
+
+.book-categories {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 460px;
+    padding: 0 10px 16px;
+
+    border: none;
+    box-shadow: none;
+}
+
+
+/* 공통 책 디자인 */
+
+.book {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 150px;
+    height: 245px;
+    margin: 0;
+    padding: 20px 8px;
+    overflow: hidden;
+    isolation: isolate;
+
+    color: #f2dba4;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-align: center;
+    text-decoration: none;
+    writing-mode: vertical-rl;
+
+    border: 2px solid #9d7845;
+    border-radius: 3px 7px 7px 3px;
+
+    box-shadow:
+        inset 5px 0 7px rgba(0, 0, 0, 0.45),
+        inset -3px 0 4px rgba(255, 226, 157, 0.12),
+        4px 5px 8px rgba(0, 0, 0, 0.65);
+
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* 책 표지 안쪽 금색 테두리 */
+
+.book::before {
+    content: "";
+    position: absolute;
+    inset: 8px 5px;
+
+    border: 1px solid rgba(222, 184, 111, 0.65);
+
+    pointer-events: none;
+}
+
+
+/* 책등의 금색 장식 */
+
+.book::after {
+    content: "✦";
+    position: absolute;
+    right: 0;
+    bottom: 17px;
+    left: 0;
+
+    color: #e3c17b;
+    font-size: 15px;
+    text-align: center;
+    writing-mode: horizontal-tb;
+
+    pointer-events: none;
+}
+
+
+/* 책마다 다른 표지 색상 */
+
+.book:nth-child(1) {
+    height: 225px;
+    background: linear-gradient(90deg, #281c20, #653b3b, #392329);
+}
+
+.book:nth-child(2) {
+    height: 255px;
+    background: linear-gradient(90deg, #1a2828, #315a50, #203b35);
+}
+
+.book:nth-child(3) {
+    height: 235px;
+    background: linear-gradient(90deg, #302319, #79552e, #45301c);
+}
+
+.book:nth-child(4) {
+    height: 265px;
+    background: linear-gradient(90deg, #1c2435, #394c70, #242f48);
+}
+
+.book:nth-child(5) {
+    height: 220px;
+    background: linear-gradient(90deg, #34233a, #64436c, #3d2947);
+}
+
+.book:nth-child(6) {
+    height: 250px;
+    background: linear-gradient(90deg, #29291b, #66613a, #38351f);
+}
+
+
+/* 마우스를 올렸을 때 */
+
+.book:hover {
+    transform: translateY(-12px) scale(1.025);
+    filter: brightness(1.25);
+
+    box-shadow:
+        0 0 14px rgba(224, 184, 104, 0.22),
+        inset 5px 0 7px rgba(0, 0, 0, 0.4),
+        5px 8px 12px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ========================================
+   5. 홈 화면 설정
+======================================== */
+
+.home-page .notebook-layout {
+    display: none;
+}
+
+/* ========================================
+   게시글 설정
+======================================== */
+/* 게시글 화면에서는 책장 숨기기 */
+.post-page .bookshelf-header,
+.post-page .bookshelf {
+    display: none;
+}
+
+/* 홈 화면에서는 게시글 영역 숨기기 */
+.home-page .notebook-layout {
+    display: none;
+}
+
+
+/* ========================================
+   6. 모바일 화면
+======================================== */
+
+@media screen and (max-width: 650px) {
+
+    /* 블로그 제목 */
+
+    .bookshelf-header {
+        padding: 35px 12px 20px;
+    }
+
+    .bookshelf-header h1 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    .bookshelf-header p {
+        font-size: 12px;
+        letter-spacing: 3px;
+    }
+
+
+    /* 모바일 책장 이미지 */
+
+    .bookshelf {
+        height: 400px;
+        min-height: 0;
+        padding: 20px 6px 0;
+        overflow: hidden;
+
+        background-size: 150% 400px;
+        background-position: center top;
+        background-repeat: no-repeat;
+    }
+
+
+    /* 모바일 책장 제목 */
+
+    .bookshelf > h2 {
+        margin-bottom: 10px;
+        padding: 5px 0;
+
+        font-size: 11px;
+        letter-spacing: 3px;
+    }
+
+    .bookshelf > h2::before,
+    .bookshelf > h2::after {
+        margin: 0 6px;
+    }
+
+
+    /* 모바일 책 배치 공간 */
+
+    .book-categories {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 4px;
+
+        height: 230px;
+        min-height: 0;
+        padding: 0 2px 10px;
+    }
+
+
+    /* 모바일 책 공통 디자인 */
+
+    .book {
+        flex: 0 1 13%;
+        width: 13%;
+        min-width: 0;
+        max-width: 13%;
+        height: 155px;
+        margin: 0;
+        padding: 6px 1px;
+
+        font-size: 11px;
+        letter-spacing: 0;
+
+        border-width: 1px;
+        transform: translateY(40px);
+    }
+
+
+    /* 모바일 책별 높이 */
+
+    .book:nth-child(1) {
+        height: 145px;
+    }
+
+    .book:nth-child(2) {
+        height: 165px;
+    }
+
+    .book:nth-child(3) {
+        height: 155px;
+    }
+
+    .book:nth-child(4) {
+        height: 170px;
+    }
+
+    .book:nth-child(5) {
+        height: 140px;
+    }
+
+    .book:nth-child(6) {
+        height: 160px;
+    }
+
+
+    /* 모바일 책 장식 */
+
+    .book::before {
+        inset: 4px 2px;
+    }
+
+    .book::after {
+        bottom: 10px;
+        font-size: 11px;
+    }
+
+
+    /* 모바일에서는 호버 확대 효과 비활성화 */
+
+    .book:hover {
+        transform: none;
+    }
+}
