@@ -1,0 +1,6 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171519"><title>밍키의 비밀노트</title><link rel="stylesheet" href="skin.css"></head><body>
+<main id="app"></main>
+<footer><span>✦</span> MINKY’S SECRET NOTE <span>✦</span></footer>
+<dialog id="editor"><form id="edit-form"><div class="dialog-head"><span class="eyebrow">A NEW CHAPTER</span><button type="button" id="close-editor" aria-label="닫기">×</button></div><h2>오늘의 페이지</h2><label>제목<input id="edit-title" required maxlength="100" placeholder="어떤 이야기를 남길까요?"></label><label>책<select id="edit-category"></select></label><label>본문<textarea id="edit-body" required rows="12" placeholder="여기에 이야기를 적어주세요. HTML 없이 일반 텍스트로 안전하게 저장돼요."></textarea></label><p class="hint">이 브라우저에 저장돼요.</p><button class="primary" type="submit">기록 저장하기</button></form></dialog>
+<div id="toast" role="status"></div><script src="skin.js"></script></body></html>

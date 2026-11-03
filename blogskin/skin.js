@@ -1,26 +1,28 @@
+'use strict';
+const categories=[{name:'일상',color:'#665245',symbol:'☾',sub:'DAILY'},{name:'공부',color:'#4c5b50',symbol:'✧',sub:'STUDY'},{name:'과제',color:'#575374',symbol:'♧',sub:'TASKS'},{name:'실험실',color:'#3f5c62',symbol:'⚗',sub:'LAB'},{name:'삐약일지',color:'#917546',symbol:'☀',sub:'DIARY'},{name:'프로젝트',color:'#744b50',symbol:'✦',sub:'PROJECT'}];
+const initial=[['작은 서재의 첫 번째 페이지','일상','어서 와요, 밍키의 비밀노트에.\n\n이곳은 흘려보내기 아쉬운 하루와 조금씩 쌓여가는 배움을 모아두는 작은 서재예요.\n\n책장에 꽂힌 여섯 권의 책을 열면 각각의 이야기가 펼쳐져요. 오늘은 어떤 책을 읽고 싶으세요?\n\n창밖이 어두워질 무렵, 따뜻한 차 한 잔을 옆에 놓고 첫 페이지를 적어봅니다.'],['배운 것을 나의 언어로 남기기','공부','오늘의 배움\n\n새로운 개념을 만났을 때, 그대로 외우기보다 내가 이해한 말로 다시 적어보려고 해요.\n\n1. 핵심 개념을 한 문장으로 정리하기\n2. 작은 예제를 직접 만들어보기\n3. 헷갈렸던 부분을 질문으로 남기기\n\n천천히, 하지만 꾸준히.'],['과제 기록을 시작하는 방법','과제','과제명 · 제출일 · 목표\n\n해야 할 일을 작은 단계로 나누어 적어보세요.\n\n자료 조사 → 초안 작성 → 결과 확인 → 최종 제출\n\n이 글은 예시 글이에요. 수정 버튼으로 나만의 과제 기록으로 바꿀 수 있어요.'],['실험 노트 001 : 작은 가설','실험실','실험 목적\n궁금했던 것을 직접 확인하기.\n\n가설\n작은 실험도 결과를 기록하면 다음 시도의 출발점이 된다.\n\n과정\n조건을 정하고 관찰한 사실을 기록한다.\n\n결과와 다음 질문\n실패한 시도에도 배운 점이 남는다.'],['삐약, 오늘도 한 걸음','삐약일지','아직 서툴러도 괜찮아요.\n\n오늘 해낸 작은 일 하나를 여기에 남겨주세요.\n\n아주 작은 발자국도 모이면 길이 되니까요.'],['밍키의 비밀노트 제작기','프로젝트','프로젝트의 시작\n\n어두운 마법 도서관 속, 나만의 이야기가 담긴 여섯 권의 책.\n책을 펼치면 크림색 종이와 검은 와이어 스프링이 있는 노트가 나타나요.\n\n구현한 기능\n책장 홈 / 카테고리 / 검색 / 글 읽기 / 글 작성과 수정 / JSON 백업과 복원\n\n이 버전은 컴퓨터에서 실행하는 독립형 노트예요. 티스토리에 적용하려면 별도로 티스토리 치환자와 스킨 파일 구성을 연결해야 해요.']].map((x,i)=>({id:'sample-'+i,title:x[0],category:x[1],body:x[2],date:'2026-11-'+String(3-i%3).padStart(2,'0')}));
+const KEY='minky-secret-notebook-v1',app=document.querySelector('#app');let posts=initial.map(p=>({...p})),editing=null,toastTimer;
+try{const raw=localStorage.getItem(KEY);if(raw){const parsed=JSON.parse(raw);if(!validPosts(parsed))throw Error();posts=parsed;}}catch{setTimeout(()=>toast('저장된 기록을 읽지 못했어요. 백업 파일이 있다면 복원해 주세요.'),300);}
+function validPosts(v){return Array.isArray(v)&&v.length<=10000&&new Set(v.map(p=>p?.id)).size===v.length&&v.every(p=>p&&['id','title','body','category','date'].every(k=>typeof p[k]==='string')&&p.id.length>0&&p.id.length<=150&&p.title.length<=100&&p.body.length<=1000000&&categories.some(c=>c.name===p.category)&&/^\d{4}-\d{2}-\d{2}$/.test(p.date));}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function url(kind,id){return '#'+kind+'/'+encodeURIComponent(id);}function recent(){return [...posts].sort((a,b)=>b.date.localeCompare(a.date));}
+function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('visible'),3500);}
+function persist(next){try{localStorage.setItem(KEY,JSON.stringify(next));posts=next;return true;}catch{toast('저장 공간이 부족하거나 저장이 차단됐어요. 먼저 백업해 주세요.');return false;}}
+function home(){app.innerHTML=`<section class="hero"><span class="eyebrow">WELCOME TO MY SECRET LIBRARY</span><h1>밍키의 비밀서재</h1><p>ENFP 개발자 꿈나무의 레전드 이세상 적응기<br>쉿. 여기서 보는것은 모두 [비밀] 입니다!</p><div class="ornament">― ✧ ―</div></section><section class="library" aria-label="카테고리 책장"><div class="shelf-niche"><div class="books">${categories.map((c,i)=>`<a class="book" style="--book:${c.color}" href="${url('category',c.name)}" aria-label="${c.name} 책 펼치기"><span class="symbol">${c.symbol}</span><span class="title">${c.name}</span><small>${String(i+1).padStart(2,'0')} · ${c.sub}</small></a>`).join('')}</div></div><div class="shelf-plank"></div></section>`;}
+function sidebar(active){return `<aside class="sidebar"><div class="profile"><div class="avatar" aria-hidden="true">☾</div><h2>밍키</h2><p>배우고, 만들고, 기록하는<br>나만의 작은 우주</p><div class="clock" id="clock"></div><div class="date" id="date"></div></div><nav class="categories" aria-label="책 목록"><a class="stack ${active==='all'?'active':''}" style="--book:#544938" href="#category/all">전체 기록 <small>${posts.length}</small></a>${categories.map(c=>`<a class="stack ${active===c.name?'active':''}" style="--book:${c.color}" href="${url('category',c.name)}">${c.symbol} ${c.name}<small>${posts.filter(p=>p.category===c.name).length}</small></a>${active===c.name?`<div class="side-posts">${recent().filter(p=>p.category===c.name).map(p=>`<a href="${url('post',p.id)}">${esc(p.title)}</a>`).join('')}</div>`:''}`).join('')}</nav></aside>`;}
+function shell(active,content){app.innerHTML=`<div class="workspace">${sidebar(active)}<section class="paper"><div class="notebook-content">${content}</div></section></div>`;tick();}
+function entries(list){return list.map(p=>`<a class="entry" href="${url('post',p.id)}"><time>${p.date.replaceAll('-','. ')} · ${esc(p.category)}</time><h2>${esc(p.title)}</h2><p>${esc(p.body.slice(0,100).replaceAll('\n',' '))}${p.body.length>100?'…':''}</p></a>`).join('')||'<div class="empty">아직 이곳에는 기록이 없어요.</div>';}
+function listing(category){const cat=category==='all'?'all':categories.some(c=>c.name===category)?category:'all';const list=recent().filter(p=>cat==='all'||p.category===cat);shell(cat,`<span class="eyebrow">THE ARCHIVE / ${cat==='all'?'ALL PAGES':categories.find(c=>c.name===cat).sub}</span><h1>${cat==='all'?'모든 이야기':esc(cat)+'의 페이지'}</h1><div class="paper-meta">${list.length}개의 기록 · 책갈피 사이에 담아둔 이야기</div><div class="search"><input id="search" type="search" aria-label="현재 목록에서 글 검색" placeholder="이 책에서 제목과 내용을 찾아보세요…"></div><div id="entries">${entries(list)}</div>`);document.querySelector('#search').oninput=e=>{const q=e.target.value.toLocaleLowerCase();document.querySelector('#entries').innerHTML=entries(list.filter(p=>(p.title+' '+p.body).toLocaleLowerCase().includes(q)));};}
+function article(id){const p=posts.find(p=>p.id===id);if(!p){shell('all','<span class="eyebrow">PAGE NOT FOUND</span><h1>페이지를 찾을 수 없어요.</h1><a href="#category/all">전체 기록으로 돌아가기 →</a>');return;}const list=recent().filter(x=>x.category===p.category),i=list.findIndex(x=>x.id===id);shell(p.category,`<a class="eyebrow" href="${url('category',p.category)}">${esc(p.category)} / SECRET NOTE</a><h1>${esc(p.title)}</h1><div class="paper-meta">${p.date.replaceAll('-','. ')} · 밍키 · ${p.body.length.toLocaleString()}자</div><div class="article-body">${esc(p.body)}</div><div class="article-actions"><button id="edit">수정</button><button id="delete">삭제</button></div><p class="hint">✧ 이 페이지도 언젠가 소중한 추억이 될 거예요.</p><nav class="post-nav">${list[i+1]?`<a href="${url('post',list[i+1].id)}">← ${esc(list[i+1].title)}</a>`:'<span></span>'}<a href="${url('category',p.category)}">목록으로</a>${list[i-1]?`<a href="${url('post',list[i-1].id)}">${esc(list[i-1].title)} →</a>`:'<span></span>'}</nav>`);document.querySelector('#edit').onclick=()=>openEditor(p);document.querySelector('#delete').onclick=()=>{if(confirm('이 페이지를 삭제할까요?')&&persist(posts.filter(x=>x.id!==id))){location.hash=url('category',p.category);toast('페이지를 삭제했어요.');}};}
+function render(){let parts;try{parts=location.hash.slice(1).split('/').map(decodeURIComponent);}catch{parts=[];}if(parts[0]==='category')listing(parts[1]);else if(parts[0]==='post')article(parts[1]);else home();window.scrollTo(0,0);}
+function tick(){const now=new Date(),clock=document.querySelector('#clock');if(clock){clock.textContent=now.toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',hour12:false});document.querySelector('#date').textContent=now.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'short'});}}
+const editor=document.querySelector('#editor');document.querySelector('#edit-category').innerHTML=categories.map(c=>`<option>${c.name}</option>`).join('');
+function openEditor(p){editing=p?.id||null;document.querySelector('#edit-title').value=p?.title||'';document.querySelector('#edit-body').value=p?.body||'';document.querySelector('#edit-category').value=p?.category||'일상';editor.showModal();document.querySelector('#edit-title').focus();}
+document.querySelector('#close-editor').onclick=()=>editor.close();document.querySelector('#edit-form').onsubmit=e=>{e.preventDefault();const title=document.querySelector('#edit-title').value.trim(),body=document.querySelector('#edit-body').value.trim();if(!title||!body){toast('제목과 본문을 입력해 주세요.');return;}if(body.length>1000000){toast('본문은 100만 자까지 저장할 수 있어요.');return;}const old=posts.find(p=>p.id===editing),now=new Date(),date=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('-');const p={id:editing||'note-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8),title,body,category:document.querySelector('#edit-category').value,date:old?.date||date};if(persist([p,...posts.filter(x=>x.id!==p.id)])){editor.close();const hash=url('post',p.id);if(location.hash===hash)render();else location.hash=hash;toast('페이지를 저장했어요.');}};
+function backup(){const blob=new Blob([JSON.stringify({format:'minky-notebook-v1',posts},null,2)],{type:'application/json'}),a=document.createElement('a'),u=URL.createObjectURL(blob);a.href=u;a.download='minky-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);toast('백업 파일을 내려받았어요.');}
+async function restore(e){const file=e.target.files[0];if(!file)return;try{if(file.size>20*1024*1024)throw Error();const data=JSON.parse(await file.text());if(data.format!=='minky-notebook-v1'||!validPosts(data.posts))throw Error();if(confirm(`현재 기록 ${posts.length}개를 백업 파일의 ${data.posts.length}개로 교체할까요? 현재 기록은 먼저 백업해 주세요.`)&&persist(data.posts)){render();toast('백업 파일을 복원했어요.');}}catch{toast('올바른 밍키 노트 백업 파일이 아니에요. (최대 20MB)');}finally{e.target.value='';}}
+window.addEventListener('hashchange',render);setInterval(tick,1000);render();
 
-const params = new URLSearchParams(window.location.search);
-
-    if (params.get("page") === "post") {
-        document.body.classList.remove("home-page");
-        document.body.classList.add("post-page");
-    }
-
-document.querySelectorAll(".side-book").forEach(book => {
-    book.addEventListener("click", event => {
-        event.preventDefault();
-
-        const group = book.closest(".category-group");
-
-        document.querySelectorAll(".side-book").forEach(item => {
-            item.classList.remove("active");
-        });
-
-        document.querySelectorAll(".category-posts").forEach(list => {
-            list.hidden = true;
-        });
-
-        book.classList.add("active");
-        group.querySelector(".category-posts").hidden = false;
-    });
-});
+const shelfPhoto = new Image();
+shelfPhoto.onload = () => document.body.classList.add("has-shelf-photo");
+shelfPhoto.src = "images/bookshelf-bg.png";
