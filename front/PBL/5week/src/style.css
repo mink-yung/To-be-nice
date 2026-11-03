@@ -1,0 +1,393 @@
+body {
+    background-color: #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;
+    font-family: 'Pretendard', sans-serif; /* 깔끔한 폰트 권장 */
+}
+
+main {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.lion-top-actions {
+    align-self: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 0 16px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+}
+
+.lion-top-actions button:disabled,
+.lion-async-buttons button:disabled,
+.lion-btn-secondary:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.lion-count {
+    color: #3d3d3d;
+    font-size: 0.95rem;
+}
+
+.lion-async-bar {
+    align-self: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 0 16px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px 16px;
+}
+
+.lion-async-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+}
+
+.lion-async-status-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    min-height: 2rem;
+}
+
+.lion-async-status {
+    color: #444;
+    font-size: 0.92rem;
+}
+
+.lion-btn-retry {
+    padding: 6px 14px;
+    border: 1px solid #c92a2a;
+    background: #fff5f5;
+    color: #c92a2a;
+    cursor: pointer;
+    font: inherit;
+    border-radius: 8px;
+}
+
+.lion-btn-retry:hover:not(:disabled) {
+    background: #ffe3e3;
+}
+
+.lion-view-options {
+    align-self: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 0 16px 0;
+    padding: 0 0 12px 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #c8c8c8;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 28px;
+}
+
+.lion-view-options.lion-view-options-bar .lion-view-label {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px 12px;
+}
+
+.lion-view-options.lion-view-options-bar .lion-view-label > span:first-of-type {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.lion-view-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: #5a5a5a;
+    min-width: 0;
+}
+
+.lion-view-label select,
+.lion-view-label input {
+    font: inherit;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    min-width: 140px;
+}
+
+.lion-view-options.lion-view-options-bar .lion-view-search {
+    flex: 1 1 200px;
+    min-width: 0;
+    max-width: 420px;
+}
+
+.lion-view-options.lion-view-options-bar .lion-view-search input {
+    min-width: 0;
+    width: 100%;
+}
+
+.lion-view-search input {
+    min-width: 200px;
+    width: min(100%, 280px);
+}
+
+.lion-empty-state {
+    align-self: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 0 20px 0;
+    padding: 28px 24px;
+    text-align: center;
+    background: #f8f8f8;
+    border: 1px dashed #c0c0c0;
+    border-radius: 12px;
+    color: #444;
+}
+
+.lion-empty-title {
+    margin: 0 0 8px 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.lion-empty-desc {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.lion-add-form-wrap {
+    align-self: flex-start;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 0 24px 0;
+}
+
+.lion-add-form {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    padding: 28px 32px;
+}
+
+.lion-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+}
+
+.lion-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.lion-field-full {
+    grid-column: 1 / -1;
+}
+
+.lion-label {
+    font-size: 0.8rem;
+    color: #5a5a5a;
+}
+
+.lion-req {
+    color: #c92a2a;
+    font-weight: 600;
+}
+
+.lion-field-msg {
+    min-height: 1.15em;
+    font-size: 0.78rem;
+    color: #c92a2a;
+}
+
+.lion-add-form input[aria-invalid="true"],
+.lion-add-form select[aria-invalid="true"],
+.lion-add-form textarea[aria-invalid="true"] {
+    border-color: #c92a2a;
+}
+
+.lion-add-form input,
+.lion-add-form select,
+.lion-add-form textarea {
+    font: inherit;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.lion-add-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.lion-form-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 8px;
+}
+
+.lion-btn-primary {
+    padding: 8px 20px;
+    border: 1px solid #111;
+    background: #fff;
+    cursor: pointer;
+    font: inherit;
+    border-radius: 8px;
+}
+
+.lion-btn-text {
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    color: #444;
+}
+
+.lion-btn-secondary {
+    padding: 8px 16px;
+    border: 1px solid #868e96;
+    background: #f1f3f5;
+    cursor: pointer;
+    font: inherit;
+    border-radius: 8px;
+    color: #343a40;
+}
+
+.lion-btn-secondary:hover:not(:disabled) {
+    background: #e9ecef;
+}
+
+.lion-form-actions-spacer {
+    flex: 1;
+    min-width: 8px;
+}
+
+@media (max-width: 560px) {
+    .lion-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.summary-section{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.profile-card {
+    background-color: white;
+    width: 320px;
+    border-radius: 15px; /* 둥근 모서리 */
+    overflow: hidden; /* 이미지가 모서리 밖으로 나가지 않게 */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* 부드러운 그림자 */
+    margin-bottom: 30px;
+    padding: 20px;
+}
+
+.profile-img {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    aspect-ratio: 1 / 1; /* 정사각형 비율 유지 */
+    object-fit: cover;
+    border-radius: 10px; /* 이미지 자체도 살짝 둥글게 */
+}
+
+.image-area-tagged {
+    position: relative;
+}
+
+.profile-card-badge {
+    position: absolute;
+    top: 10px;
+    right: 10%;
+    transform: translateX(50%);
+    max-width: 46%;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #212529;
+    font-size: 0.72rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile-img-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 80%;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    box-sizing: border-box;
+    background-color: #ececec;
+    border: 1px dashed #b0b0b0;
+    color: #5c5c5c;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.35;
+    padding: 8px;
+}
+
+.card-content .name {
+    margin: 15px 0 5px 0;
+    font-size: 1.2rem;
+}
+
+.card-content .part {
+    color: #4c6ef5;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.part{
+    color: #4c6ef5;
+}
+
+.special-part{
+    color: #42fa42;
+}
+
+.wrap{
+    flex-wrap: wrap;
+}
+
+/* 상세설명카드 */
+.detail-content {
+    background-color: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    margin: 30px;
+}
+.detail-part{
+    color: #4c6ef5;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>아기사자 자기소개</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p class="lion-top-actions">
+        <button type="button" id="btn-add-lion">아기 사자 추가</button>
+        <button type="button" id="btn-remove-lion">마지막 아기 사자 삭제</button>
+        <span class="lion-count" id="lion-count" aria-live="polite">총 0명</span>
+    </p>
+    <div class="lion-async-bar" aria-label="외부 데이터 불러오기">
+        <div class="lion-async-buttons">
+            <button type="button" id="btn-random-1">랜덤 1명 추가</button>
+            <button type="button" id="btn-random-5">랜덤 5명 추가</button>
+            <button type="button" id="btn-refresh-all">전체 새로고침</button>
+        </div>
+        <div class="lion-async-status-wrap">
+            <span id="lion-async-status" class="lion-async-status" aria-live="polite">준비 완료</span>
+            <button type="button" id="btn-async-retry" class="lion-btn-retry" hidden>재시도</button>
+        </div>
+    </div>
+    <div class="lion-view-options" role="search" aria-label="보기 옵션">
+        <label class="lion-view-label">
+            <span>파트</span>
+            <select id="filter-part">
+                <option value="">전체</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Backend">Backend</option>
+                <option value="Design">Design</option>
+            </select>
+        </label>
+        <label class="lion-view-label">
+            <span>정렬</span>
+            <select id="sort-order">
+                <option value="latest">최신추가순</option>
+                <option value="name">이름순</option>
+            </select>
+        </label>
+        <label class="lion-view-label lion-view-search">
+            <span>검색</span>
+            <input type="search" id="search-name" placeholder="이름으로 검색" autocomplete="off">
+        </label>
+    </div>
+    <div id="lion-add-form-wrap" class="lion-add-form-wrap" hidden>
+        <form id="lion-add-form" class="lion-add-form" novalidate>
+            <div class="lion-form-grid">
+                <label class="lion-field lion-field-half">
+                    <span class="lion-label">이름 <span class="lion-req" aria-hidden="true">*</span></span>
+                    <input type="text" id="lion-field-name" name="name" placeholder="예: 홍아기사자" autocomplete="name" aria-describedby="lion-msg-name">
+                    <span class="lion-field-msg" id="lion-msg-name" role="alert"></span>
+                </label>
+                <label class="lion-field lion-field-half">
+                    <span class="lion-label">파트</span>
+                    <select id="lion-field-part" name="part">
+                        <option value="Frontend">Frontend</option>
+                        <option value="Backend">Backend</option>
+                        <option value="Design">Design</option>
+                    </select>
+                </label>
+                <label class="lion-field lion-field-full">
+                    <span class="lion-label">관심 기술 (쉼표로 구분) <span class="lion-req" aria-hidden="true">*</span></span>
+                    <input type="text" id="lion-field-skills" name="skills" placeholder="예: JavaScript, React, HTML/CSS" aria-describedby="lion-msg-skills">
+                    <span class="lion-field-msg" id="lion-msg-skills" role="alert"></span>
+                </label>
+                <label class="lion-field lion-field-full">
+                    <span class="lion-label">한 줄 소개 (요약 카드) <span class="lion-req" aria-hidden="true">*</span></span>
+                    <input type="text" id="lion-field-intro-line" name="introLine" placeholder="예: 4주차 비동기·필터 연습 중!" aria-describedby="lion-msg-intro-line">
+                    <span class="lion-field-msg" id="lion-msg-intro-line" role="alert"></span>
+                </label>
+                <label class="lion-field lion-field-full">
+                    <span class="lion-label">자기소개 (상세 카드) <span class="lion-req" aria-hidden="true">*</span></span>
+                    <textarea id="lion-field-bio" name="bio" rows="5" placeholder="예: fetch로 데이터를 받아 화면을 갱신하는 연습을 하고 있습니다." aria-describedby="lion-msg-bio"></textarea>
+                    <span class="lion-field-msg" id="lion-msg-bio" role="alert"></span>
+                </label>
+                <label class="lion-field lion-field-half">
+                    <span class="lion-label">Email <span class="lion-req" aria-hidden="true">*</span></span>
+                    <input type="text" id="lion-field-email" name="email" placeholder="예: lion@example.com" autocomplete="email" inputmode="email" aria-describedby="lion-msg-email">
+                    <span class="lion-field-msg" id="lion-msg-email" role="alert"></span>
+                </label>
+                <label class="lion-field lion-field-half">
+                    <span class="lion-label">Phone <span class="lion-req" aria-hidden="true">*</span></span>
+                    <input type="tel" id="lion-field-phone" name="phone" placeholder="예: 010-1234-5678" autocomplete="tel" aria-describedby="lion-msg-phone">
+                    <span class="lion-field-msg" id="lion-msg-phone" role="alert"></span>
+                </label>
+                <label class="lion-field lion-field-full">
+                    <span class="lion-label">Website</span>
+                    <input type="text" id="lion-field-website" name="website" placeholder="예: https://example.com" aria-describedby="lion-msg-website">
+                    <span class="lion-field-msg" id="lion-msg-website" role="alert"></span>
+                </label>
+                <label class="lion-field lion-field-full">
+                    <span class="lion-label">한 마디 <span class="lion-req" aria-hidden="true">*</span></span>
+                    <input type="text" id="lion-field-quote" name="quote" placeholder="예: 데이터 바꾸면 화면도 바뀐다!" aria-describedby="lion-msg-quote">
+                    <span class="lion-field-msg" id="lion-msg-quote" role="alert"></span>
+                </label>
+            </div>
+            <div class="lion-form-actions">
+                <button type="button" id="btn-form-random-fill" class="lion-btn-secondary">랜덤 값 채우기</button>
+                <span class="lion-form-actions-spacer"></span>
+                <button type="button" id="lion-form-cancel" class="lion-btn-text">취소</button>
+                <button type="submit" id="lion-form-submit" class="lion-btn-primary">추가하기</button>
+            </div>
+        </form>
+    </div>
+    <div id="lion-empty-state" class="lion-empty-state" hidden>
+        <p class="lion-empty-title">표시할 아기 사자가 없습니다</p>
+        <p class="lion-empty-desc">필터·정렬·검색 조건을 바꾸거나, 랜덤 추가로 명단을 채워 보세요.</p>
+    </div>
+    <main>
+        <section class="summary-section" id="lion-summary-section" aria-label="요약 카드"></section>
+        <section class="detail-section" id="lion-detail-section" aria-label="상세 카드"></section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

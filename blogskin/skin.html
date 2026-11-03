@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>밍키의 비밀노트</title>
+    <link rel="stylesheet" href="skin.css">
+    <script src="skin.js" defer></script>
+</head>
+<body class="home-page">
+    <header class="bookshelf-header">
+        <h1>밍키의 비밀노트</h1>
+    </header>
+
+    <main>
+        <section class="bookshelf">
+            <h2>Mingky's Bookshelf</h2>
+
+            <nav class="book-categories">
+                <a href="#daily" class="book">일상</a>
+                <a href="#study" class="book">공부</a>
+                <a href="#assignment" class="book">과제</a>
+                <a href="#laboratory" class="book">실험실</a>
+                <a href="#mistakes" class="book">삐약일지</a>
+                <a href="#project" class="book">프로젝트</a>
+            </nav>
+        </section>
+
+        <section class="notebook-layout">
+            <aside class="sidebar">
+                <img
+                    src="https://placehold.co/120x120"
+                    alt="프로필사진"
+                    class="profile-image"
+                >
+
+                <h2>밍키</h2>
+                <p id="clock">현재 시각</p>
+                <p id="today">오늘 날짜</p>
+
+
+                <nav class="sidebar-categories">
+                    <div class="category-group">
+                        <a href="#daily" class="side-book active" data-category="daily">일상</a>
+                        <ul class="category-posts">
+                            <li><a href="#post1">오늘의 기록</a></li>
+                            <li><a href="#post2">소소한 하루</a></li>
+                            <li><a href="#post3">나의 비밀 일기</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-group">
+                        <a href="#study" class="side-book" data-category="study">공부</a>
+                        <ul class="category-posts" hidden>
+                            <li><a href="#post4">자바 공부 기록</a></li>
+                            <li><a href="#post5">파이썬 for문 정리</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-group">
+                        <a href="#assignment" class="side-book" data-category="assignment">과제</a>
+                        <ul class="category-posts" hidden>
+                            <li><a href="#post6">데이터 분석 과제</a></li>
+                            <li><a href="#post7">발표 준비 기록</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-group">
+                        <a href="#laboratory" class="side-book" data-category="laboratory">실험실</a>
+                        <ul class="category-posts" hidden>
+                            <li><a href="#post8">DVWA 실습</a></li>
+                            <li><a href="#post9">SQL 인젝션 실험</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-group">
+                        <a href="#mistakes" class="side-book" data-category="mistakes">삐약일지</a>
+                        <ul class="category-posts" hidden>
+                            <li><a href="#post10">오늘의 삐약일지</a></li>
+                            <li><a href="#post11">실수에서 배운 것</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-group">
+                        <a href="#project" class="side-book" data-category="project">프로젝트</a>
+                        <ul class="category-posts" hidden>
+                            <li><a href="#post12">티스토리 스킨 제작</a></li>
+                            <li><a href="#post13">도리 프로젝트</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+
+            </aside>
+
+            <article class="notebook">
+                
+                <div class="notebook-spring">
+                    <svg class="spring-coil"
+                        viewBox="0 0 800 100"
+                        preserveAspectRatio="none"
+                        aria-hidden="true">
+
+                        <defs>
+                            <linearGradient id="springMetal"
+                                            x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#111110"/>
+                                <stop offset="18%" stop-color="#77756f"/>
+                                <stop offset="32%" stop-color="#d8d5cd"/>
+                                <stop offset="48%" stop-color="#45433e"/>
+                                <stop offset="68%" stop-color="#aaa79f"/>
+                                <stop offset="85%" stop-color="#363530"/>
+                                <stop offset="100%" stop-color="#111110"/>
+                            </linearGradient>
+
+                            <linearGradient id="springHighlight"
+                                            x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#f0eee8"/>
+                                <stop offset="45%" stop-color="#77756f"/>
+                                <stop offset="100%" stop-color="#171614"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- 뒤쪽으로 넘어가는 코일: 어두운 철사 -->
+                        <g fill="none"
+                        stroke="#171614"
+                        stroke-width="8"
+                        stroke-linecap="round">
+
+                            <path d="M 20 48
+                                    C 20 4, 115 4, 115 48
+                                    C 115 92, 210 92, 210 48
+                                    C 210 4, 305 4, 305 48
+                                    C 305 92, 400 92, 400 48
+                                    C 400 4, 495 4, 495 48
+                                    C 495 92, 590 92, 590 48
+                                    C 590 4, 685 4, 685 48
+                                    C 685 92, 780 92, 780 48"/>
+                        </g>
+
+                        <!-- 뒤쪽 코일의 금속 표면 -->
+                        <g fill="none"
+                        stroke="url(#springMetal)"
+                        stroke-width="4"
+                        stroke-linecap="round">
+
+                            <path d="M 20 48
+                                    C 20 4, 115 4, 115 48
+                                    C 115 92, 210 92, 210 48
+                                    C 210 4, 305 4, 305 48
+                                    C 305 92, 400 92, 400 48
+                                    C 400 4, 495 4, 495 48
+                                    C 495 92, 590 92, 590 48
+                                    C 590 4, 685 4, 685 48
+                                    C 685 92, 780 92, 780 48"/>
+                        </g>
+
+                        <!-- 종이 뒤로 들어가는 부분을 가리는 종이색 마스크 -->
+                        <g fill="none"
+                        stroke="#e6d9bd"
+                        stroke-width="10"
+                        stroke-linecap="round">
+                            <path d="M 20 48 L 20 39
+                                    M 115 48 L 115 57
+                                    M 210 48 L 210 39
+                                    M 305 48 L 305 57
+                                    M 400 48 L 400 39
+                                    M 495 48 L 495 57
+                                    M 590 48 L 590 39
+                                    M 685 48 L 685 57
+                                    M 780 48 L 780 39"/>
+                        </g>
+
+                        <!-- 앞쪽으로 솟아 나오는 코일 -->
+                        <g fill="none"
+                        stroke="#111110"
+                        stroke-width="9"
+                        stroke-linecap="round">
+
+                            <path d="M 20 48
+                                    C 20 92, 115 92, 115 48
+                                    C 115 4, 210 4, 210 48
+                                    C 210 92, 305 92, 305 48
+                                    C 305 4, 400 4, 400 48
+                                    C 400 92, 495 92, 495 48
+                                    C 495 4, 590 4, 590 48
+                                    C 590 92, 685 92, 685 48
+                                    C 685 4, 780 4, 780 48"/>
+                        </g>
+
+                        <!-- 앞쪽 철사: 입체적인 금속 광택 -->
+                        <g fill="none"
+                        stroke="url(#springMetal)"
+                        stroke-width="5"
+                        stroke-linecap="round">
+
+                            <path d="M 20 48
+                                    C 20 92, 115 92, 115 48
+                                    C 115 4, 210 4, 210 48
+                                    C 210 92, 305 92, 305 48
+                                    C 305 4, 400 4, 400 48
+                                    C 400 92, 495 92, 495 48
+                                    C 495 4, 590 4, 590 48
+                                    C 590 92, 685 92, 685 48
+                                    C 685 4, 780 4, 780 48"/>
+                        </g>
+
+                        <!-- 앞쪽 철사에 맺히는 가느다란 빛 -->
+                        <g fill="none"
+                        stroke="url(#springHighlight)"
+                        stroke-width="1.4"
+                        stroke-linecap="round">
+
+                            <path d="M 24 48
+                                    C 24 87, 111 87, 111 48
+                                    M 214 48
+                                    C 214 87, 301 87, 301 48
+                                    M 404 48
+                                    C 404 87, 491 87, 491 48
+                                    M 594 48
+                                    C 594 87, 681 87, 681 48"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="notebook-content">
+                    <p class="post-info">일상 . 2026.10.23</p>
+
+                    <h2>오늘의 기록</h2>
+
+                    <hr>
+
+                    <p>밍키의 비밀노트를 보시다니 변태같으니</p>
+                    <p>여기다가 비밀정보를 하나씩 적을것이다.</p>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
